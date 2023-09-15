@@ -56,7 +56,6 @@ send_button.pack()
 label = tk.Label(root)
 label.pack()
 
-# Rótulo para exibir a resposta do servidor
 result_label = tk.Label(root)
 result_label.pack()
 
