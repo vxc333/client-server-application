@@ -42,7 +42,6 @@ ip_label.pack()
 ip_entry = tk.Entry(root, width=40)
 ip_entry.pack()
 
-print(ip_entry.get())
 
 load_button = tk.Button(root, text="Carregar Imagem", command=open_image)
 load_button.pack()
