@@ -1,10 +1,12 @@
 from socket import *
 from PIL import Image
+import io
 
 
-def get_image_info(image_path):
+def process_image(image_data):
     try:
-        img = Image.open(image_path)
+        image_buffer = io.BytesIO(image_data)
+        img = Image.open(image_buffer)
         color_mode = img.mode
         image_format = img.format
         dimensions = img.size
@@ -21,8 +23,8 @@ print("The server is ready to receive")
 
 while 1:
     connectionSocket, addr = serverSocket.accept()
-    sentence = connectionSocket.recv(1024).decode()
-    color_mode, image_format, dimensions = get_image_info(sentence)
+    sentence = connectionSocket.recv(1024)
+    color_mode, image_format, dimensions = process_image(sentence)
 
     if color_mode and image_format and dimensions:
         response = f"Padrão de cor: {color_mode}, Formato: {image_format}, Dimensões: {dimensions[0]}x{dimensions[1]}"
